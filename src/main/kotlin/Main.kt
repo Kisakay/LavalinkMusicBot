@@ -1,20 +1,18 @@
 package org.example
 
 import dev.kord.core.Kord
-import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.gateway.ALL
 import dev.kord.gateway.Intents
 import dev.kord.gateway.PrivilegedIntent
 import kotlinx.serialization.json.Json
+import org.example.events.EventHandler
+import org.example.lavalink.setupLavaLink
 import org.example.structures.Config
-import java.io.File
-
 import org.reflections.Reflections
 import org.reflections.scanners.SubTypesScanner
-import org.reflections.util.ConfigurationBuilder
 import org.reflections.util.ClasspathHelper
-import org.example.events.EventHandler
-import org.example.interactions.commands.CommandHandler
+import org.reflections.util.ConfigurationBuilder
+import java.io.File
 
 suspend fun main() {
     val classLoader = Thread.currentThread().contextClassLoader
@@ -26,9 +24,10 @@ suspend fun main() {
 
     val kord = Kord(config.discord.token)
 
-    val reflections = Reflections(ConfigurationBuilder()
-        .setUrls(ClasspathHelper.forPackage("org.example.events"))
-        .setScanners(SubTypesScanner())
+    val reflections = Reflections(
+        ConfigurationBuilder()
+            .setUrls(ClasspathHelper.forPackage("org.example.events"))
+            .setScanners(SubTypesScanner())
     )
     val handlers = reflections.getSubTypesOf(EventHandler::class.java)
 
@@ -36,6 +35,8 @@ suspend fun main() {
         val handlerInstance = handlerClass.getDeclaredConstructor().newInstance()
         handlerInstance.register(kord)
     }
+
+    setupLavaLink(kord)
 
     kord.login {
         @OptIn(PrivilegedIntent::class)
