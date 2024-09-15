@@ -1,6 +1,7 @@
 package org.example
 
 import dev.kord.core.Kord
+import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.gateway.ALL
 import dev.kord.gateway.Intents
 import dev.kord.gateway.PrivilegedIntent
@@ -13,6 +14,7 @@ import org.reflections.scanners.SubTypesScanner
 import org.reflections.util.ConfigurationBuilder
 import org.reflections.util.ClasspathHelper
 import org.example.events.EventHandler
+import org.example.interactions.commands.CommandHandler
 
 suspend fun main() {
     val classLoader = Thread.currentThread().contextClassLoader

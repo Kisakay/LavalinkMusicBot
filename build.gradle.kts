@@ -16,7 +16,9 @@ dependencies {
     implementation("io.ktor:ktor-client-core:2.0.0")
     implementation("io.ktor:ktor-client-cio:2.3.5")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-    implementation("org.reflections:reflections:0.9.12")
+    implementation("org.reflections:reflections:0.10.2")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.0") // Add Kotlin Reflection library
+
     testImplementation(kotlin("test"))
 }
 
