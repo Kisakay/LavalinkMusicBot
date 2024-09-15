@@ -1,6 +1,7 @@
 package org.example.interactions.commands
 
-// PingCommand.kt
+import dev.kord.core.behavior.edit
+import dev.kord.core.behavior.reply
 import dev.kord.core.event.message.MessageCreateEvent
 
 class PingCommand : Command {
@@ -10,6 +11,15 @@ class PingCommand : Command {
     override val params: String = "<>"
 
     override suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command>) {
-        event.message.channel.createMessage("Pong!")
+        val startTimestamp = System.currentTimeMillis()
+
+        val responseMessage = event.message.reply { content = "⏳" }
+
+        val endTimestamp = System.currentTimeMillis()
+        val latency = endTimestamp - startTimestamp
+
+        responseMessage.edit {
+            content = "\uD83C\uDFD3 Latency: ${latency}ms"
+        }
     }
 }

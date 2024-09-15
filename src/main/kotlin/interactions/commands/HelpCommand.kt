@@ -12,10 +12,7 @@ class HelpCommand : Command {
     override val params: String = "<>"
 
     override suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command>) {
-        val channel = event.message.channel
-
-        println(commands)
-        channel.createMessage {
+        event.message.channel.createMessage {
             embeds = mutableListOf(EmbedBuilder().apply {
                 title = "Help"
                 description = "List of available commands"
