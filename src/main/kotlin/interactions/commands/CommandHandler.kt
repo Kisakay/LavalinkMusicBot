@@ -5,6 +5,10 @@ import org.reflections.Reflections
 import kotlin.reflect.full.createInstance
 
 interface Command {
+    val name: String
+    val description: String
+    val permissions: String // Example permission structure. Modify as needed.
+
     suspend fun execute(event: MessageCreateEvent)
 }
 
@@ -17,12 +21,13 @@ class CommandHandler {
         // Find all classes that implement Command interface
         val commandClasses = reflections.getSubTypesOf(Command::class.java)
         return commandClasses.mapNotNull { clazz ->
-            // Create an instance of each command
-            val instance = clazz.kotlin.runCatching { createInstance() }.getOrNull()
-            if (instance != null) {
-                // Map command name (lowercase class name) to instance
-                clazz.simpleName!!.lowercase().replace("command", "") to instance
-            } else {
+            try {
+                // Create an instance of each command
+                val instance = clazz.kotlin.createInstance()
+                // Map command name to instance
+                instance.name to instance
+            } catch (e: Exception) {
+                println("Failed to create instance of ${clazz.simpleName}: ${e.message}")
                 null
             }
         }.toMap()
