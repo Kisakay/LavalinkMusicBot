@@ -39,7 +39,7 @@ class CommandHandler {
         if (content.startsWith("!")) {
             val commandName = content.split(" ")[0].substring(1).lowercase()
             val command = commands[commandName]
-            command?.execute(event)
+            command?.execute(event, commands)
         }
     }
 }
