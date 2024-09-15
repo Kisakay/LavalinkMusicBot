@@ -8,8 +8,9 @@ interface Command {
     val name: String
     val description: String
     val permissions: String // Example permission structure. Modify as needed.
+    val params: String
 
-    suspend fun execute(event: MessageCreateEvent)
+    suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command> = mapOf())
 }
 
 class CommandHandler {
