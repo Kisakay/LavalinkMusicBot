@@ -7,7 +7,7 @@ import dev.kord.core.on
 import org.example.BotConfig
 
 
-class BotReadyHandler : EventHandler {
+class Ready : EventHandler {
     override suspend fun register(kord: Kord) {
         kord.on<ReadyEvent> {
             println("Logged in as ${self.tag} (${self.id})");
