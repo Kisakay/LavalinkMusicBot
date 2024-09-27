@@ -20,6 +20,6 @@ class PauseMusicCommands : Command {
         val player = link.player
 
         player.pause(!player.paused)
-        event.message.reply { content = if (player.paused) "Música pausada!" else "Música despausada!" }
+        event.message.reply { content = if (player.paused) "Music paused!" else "Music unpaused!" }
     }
 }

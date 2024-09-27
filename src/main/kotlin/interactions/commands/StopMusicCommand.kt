@@ -21,6 +21,6 @@ class StopMusicCommand : Command {
         val player = link.player
 
         player.stopTrack()
-        event.message.reply { content = "Música parada!" }
+        event.message.reply { content = "Stopped music!" }
     }
 }

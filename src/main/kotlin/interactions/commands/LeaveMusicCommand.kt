@@ -21,6 +21,6 @@ class LeaveMusicCommand : Command {
         val player = link.player
 
         link.destroy()
-        event.message.reply { content = "Até mais!" }
+        event.message.reply { content = "A plus tard!" }
     }
 }
