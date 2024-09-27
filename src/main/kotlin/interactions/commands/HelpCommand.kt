@@ -2,6 +2,7 @@ package org.example.interactions.commands
 
 import dev.kord.common.Color
 import dev.kord.core.behavior.channel.createMessage
+import dev.kord.core.behavior.reply
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.rest.builder.message.EmbedBuilder
 import org.example.BotConfig
@@ -19,21 +20,27 @@ class HelpCommand : Command {
         commands: Map<String, Command>,
         musicService: MusicService
     ) {
-        event.message.channel.createMessage {
+        val botAvatarUrl = event.kord.getSelf().avatar?.cdnUrl?.toUrl()?.toString()
+            ?: "https://cdn.discordapp.com/embed/avatars/0.png"
+
+        event.message.reply {
             embeds = mutableListOf(EmbedBuilder().apply {
                 title = "Help"
                 description = "List of available commands"
                 color = Color(0x00FF00)
 
                 image = "https://ihorizon.me/assets/img/banner/ihrz_en-US.png"
-//                thumbnail = EmbedBuilder.Thumbnail().apply {
-//                    url = event.kord.getSelf().avatar?.cdnUrl?.toUrl().toString()
-//                }
+                thumbnail = EmbedBuilder.Thumbnail().apply {
+                    url = botAvatarUrl
+                }
 
                 commands.values.forEach { command ->
                     fields += EmbedBuilder.Field().apply {
                         name = "**`${BotConfig.discord.prefix}${command.name} ${command.params}`**"
-                        value = "${command.description}\nPermissions: ${command.permissions}\nAliases: ${if (command.aliases == null) "None" else command.aliases!!.joinToString(", ")}"
+                        value = "${command.description}\nPermissions: ${command.permissions}\nAliases: ${
+                            if (command.aliases == null) "None" else command.aliases!!.map { "`$it`" }
+                                .joinToString(", ")
+                        }"
                         inline = false
                     }
                 }
