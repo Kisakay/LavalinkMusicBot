@@ -10,6 +10,8 @@ import dev.schlaubi.lavakord.audio.on
 import dev.schlaubi.lavakord.kord.getLink
 import org.example.MusicService
 
+val musicQueue = mutableListOf<Track>();
+
 suspend fun playNextTrack(link: Link): Track? {
     return if (musicQueue.isNotEmpty()) {
         val nextTrack = musicQueue.removeAt(0)
@@ -100,19 +102,3 @@ class PlayMusicCommands : Command {
         event.message.channel.createMessage(responseMessage)
     }
 }
-
-//object MusicCommands {
-//    suspend fun handleMusicCommands(event: MessageCreateEvent, command: String, query: String?) {
-//        val guildId = event.message.getGuild().id
-//        val link = MusicService.lavalink.getLink(guildId)
-//        val player = link.player
-//
-//        player.on<TrackEndEvent> {
-//            val track = playNextTrack(link)
-//            val message = if (track != null) "Tocando agora: ${track.info.title}" else "A fila de música está vazia :("
-//            event.message.channel.createMessage(message)
-//        }
-//    }
-//
-//
-//}
