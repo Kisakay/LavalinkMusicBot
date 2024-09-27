@@ -4,7 +4,7 @@ import dev.kord.core.event.message.MessageCreateEvent
 import dev.schlaubi.lavakord.kord.getLink
 import org.example.MusicService
 
-class ConnectMusicCommands : Command {
+class ConnectMusicCommand : Command {
     override val name: String = "connect"
     override val description: String = "Bot join the channel"
     override val permissions: String = "everyone"

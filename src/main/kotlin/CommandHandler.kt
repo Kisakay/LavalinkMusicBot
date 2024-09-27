@@ -1,15 +1,13 @@
-package org.example.interactions.commands
+package org.example
 
 import dev.kord.core.event.message.MessageCreateEvent
-import org.example.BotConfig
-import org.example.MusicService
 import org.reflections.Reflections
 import kotlin.reflect.full.createInstance
 
 interface Command {
     val name: String
     val description: String
-    val permissions: String // Example permission structure. Modify as needed.
+    val permissions: String
     val params: String
 
     suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command> = mapOf(), musicService: MusicService)

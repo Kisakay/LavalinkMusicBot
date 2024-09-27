@@ -5,7 +5,7 @@ import dev.kord.core.event.message.MessageCreateEvent
 import dev.schlaubi.lavakord.kord.getLink
 import org.example.MusicService
 
-class PauseMusicCommands : Command {
+class PauseMusicCommand : Command {
     override val name: String = "pause"
     override val description: String = "pause the current track"
     override val permissions: String = "everyone"

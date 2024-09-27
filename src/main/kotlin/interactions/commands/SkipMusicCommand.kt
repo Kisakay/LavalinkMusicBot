@@ -3,8 +3,9 @@ package org.example.interactions.commands
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.schlaubi.lavakord.kord.getLink
 import org.example.MusicService
+import org.example.method.skipTrack
 
-class SkipMusicCommands : Command {
+class SkipMusicCommand : Command {
     override val name: String = "skip"
     override val description: String = "Skip the current track"
     override val permissions: String = "everyone"

@@ -1,23 +1,12 @@
 package org.example.interactions.commands
 
 import dev.kord.common.Color
-import dev.kord.core.Kord
 import dev.kord.core.behavior.channel.createMessage
-import dev.kord.core.entity.Member
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.rest.builder.message.EmbedBuilder
 import kotlinx.coroutines.flow.count
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.runBlocking
+import method.getAllMembers
 import org.example.MusicService
-
-suspend fun getAllMembers(kord: Kord): List<Member> {
-    val allMembers = mutableListOf<Member>()
-    for (guild in kord.guilds.toList()) {
-        allMembers.addAll(guild.members.toList())
-    }
-    return allMembers
-}
 
 class BotInfoCommand : Command {
     override val name: String = "botinfo"
