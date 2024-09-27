@@ -18,6 +18,7 @@ suspend fun main() {
 
     val kord = Kord(BotConfig.discord.token)
     lavalink = setupLavaLink(kord);
+    setupLavaLink(kord)
 
     val reflections = Reflections(
         ConfigurationBuilder()
@@ -30,8 +31,6 @@ suspend fun main() {
         val handlerInstance = handlerClass.getDeclaredConstructor().newInstance()
         handlerInstance.register(kord)
     }
-
-    setupLavaLink(kord)
 
     kord.login {
         @OptIn(PrivilegedIntent::class)
