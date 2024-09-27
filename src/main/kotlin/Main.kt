@@ -5,14 +5,12 @@ import dev.kord.gateway.ALL
 import dev.kord.gateway.Intents
 import dev.kord.gateway.PrivilegedIntent
 import dev.schlaubi.lavakord.LavaKord
-import kotlinx.serialization.json.Json
 import org.example.events.EventHandler
 import org.example.lavalink.setupLavaLink
 import org.reflections.Reflections
 import org.reflections.scanners.SubTypesScanner
 import org.reflections.util.ClasspathHelper
 import org.reflections.util.ConfigurationBuilder
-import java.io.File
 
 lateinit var lavalink: LavaKord
 
