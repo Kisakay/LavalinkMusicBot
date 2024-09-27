@@ -23,8 +23,6 @@ dependencies {
     implementation("dev.schlaubi.lavakord:lavasrc-jvm:7.1.0") {
         exclude(group = "com.github.topi314.lavasrc", module = "protocol")
     }
-    implementation("dev.schlaubi.lavakord:sponsorblock-jvm:7.1.0")
-
     testImplementation(kotlin("test"))
 }
 

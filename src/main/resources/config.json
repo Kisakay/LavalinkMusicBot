@@ -1,5 +1,19 @@
 {
  "discord": {
-   "token": "MTA1MzgxODA0NTA3MzczOTgxNw.GwmwMG.9SDaeyLGXCkGMmlKKsW8cT6XIILj9bmAaGgZek"
- }
+   "token": "NjE4MTIzMzk2NTkyNjk3MzU1.Gm6-BM.gQEbarXFVllo9CMzWPjk5czk_zHGSFCu6S_8HQ",
+   "prefix": "-"
+ },
+  "lavalink": {
+    "nodes": [
+      {
+        "name": "node1",
+        "host": "127.0.0.1",
+        "port": 8989,
+        "authorization": "youshallnotpass",
+        "secure": false
+      }
+    ],
+
+    "defaultSource": "youtube"
+  }
 }

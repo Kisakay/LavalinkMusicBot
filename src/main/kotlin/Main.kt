@@ -7,7 +7,6 @@ import dev.kord.gateway.PrivilegedIntent
 import kotlinx.serialization.json.Json
 import org.example.events.EventHandler
 import org.example.lavalink.setupLavaLink
-import org.example.structures.Config
 import org.reflections.Reflections
 import org.reflections.scanners.SubTypesScanner
 import org.reflections.util.ClasspathHelper
@@ -15,14 +14,8 @@ import org.reflections.util.ConfigurationBuilder
 import java.io.File
 
 suspend fun main() {
-    val classLoader = Thread.currentThread().contextClassLoader
-    val configFile = File(classLoader.getResource("config.json")!!.file)
 
-    val configFileContent = configFile.readText()
-
-    val config = Json.decodeFromString<Config>(configFileContent)
-
-    val kord = Kord(config.discord.token)
+    val kord = Kord(BotConfig.discord.token)
 
     val reflections = Reflections(
         ConfigurationBuilder()

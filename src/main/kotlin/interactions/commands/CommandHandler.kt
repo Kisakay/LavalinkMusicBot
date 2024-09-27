@@ -1,6 +1,7 @@
 package org.example.interactions.commands
 
 import dev.kord.core.event.message.MessageCreateEvent
+import org.example.BotConfig
 import org.reflections.Reflections
 import kotlin.reflect.full.createInstance
 
@@ -36,7 +37,7 @@ class CommandHandler {
 
     suspend fun handle(event: MessageCreateEvent) {
         val content = event.message.content
-        if (content.startsWith("!")) {
+        if (content.startsWith(BotConfig.discord.prefix)) {
             val commandName = content.split(" ")[0].substring(1).lowercase()
             val command = commands[commandName]
             command?.execute(event, commands)

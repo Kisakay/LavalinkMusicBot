@@ -4,6 +4,7 @@ import dev.kord.common.Color
 import dev.kord.core.behavior.channel.createMessage
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.rest.builder.message.EmbedBuilder
+import org.example.BotConfig
 
 class HelpCommand : Command {
     override val name: String = "help"
@@ -20,7 +21,7 @@ class HelpCommand : Command {
 
                 commands.values.forEach { command ->
                     fields += EmbedBuilder.Field().apply {
-                        name = "**`!${command.name} ${command.params}`**"
+                        name = "**`${BotConfig.discord.prefix}${command.name} ${command.params}`**"
                         value = "${command.description}\nPermissions: ${command.permissions}"
                         inline = false
                     }
