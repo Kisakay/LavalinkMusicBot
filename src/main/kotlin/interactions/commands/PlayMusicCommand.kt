@@ -31,8 +31,6 @@ class PlayMusicCommand : Command {
         val search = if (query.startsWith("http")) query else "ytsearch:$query"
         val link = musicService.lavalink.getLink(event.message.getGuild().id);
 
-        println(query);
-
         if (link.state != Link.State.CONNECTED) {
             connect(event, link)
         }
