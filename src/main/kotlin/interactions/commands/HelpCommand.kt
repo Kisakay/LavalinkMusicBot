@@ -14,12 +14,21 @@ class HelpCommand : Command {
     override val permissions: String = "everyone"
     override val params: String = "<>"
 
-    override suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command>, musicService: MusicService) {
+    override suspend fun execute(
+        event: MessageCreateEvent,
+        commands: Map<String, Command>,
+        musicService: MusicService
+    ) {
         event.message.channel.createMessage {
             embeds = mutableListOf(EmbedBuilder().apply {
                 title = "Help"
                 description = "List of available commands"
                 color = Color(0x00FF00)
+
+                image = "https://ihorizon.me/assets/img/banner/ihrz_en-US.png"
+                thumbnail = EmbedBuilder.Thumbnail().apply {
+                    url = event.kord.getSelf().avatar?.cdnUrl?.toUrl().toString()
+                }
 
                 commands.values.forEach { command ->
                     fields += EmbedBuilder.Field().apply {
