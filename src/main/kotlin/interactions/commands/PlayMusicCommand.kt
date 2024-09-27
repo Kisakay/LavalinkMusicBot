@@ -20,8 +20,13 @@ class PlayMusicCommand : Command {
     override val description: String = "Play music into a voice channel"
     override val permissions: String = "everyone"
     override val params: String = "<link>"
+    override val aliases: Array<String>? = arrayOf("p")
 
-    override suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command>, musicService: MusicService) {
+    override suspend fun execute(
+        event: MessageCreateEvent,
+        commands: Map<String, Command>,
+        musicService: MusicService
+    ) {
         val query = event.message.content.removePrefix("${BotConfig.discord.prefix}play").trim()
         val search = if (query.startsWith("http")) query else "ytsearch:$query"
         val link = musicService.lavalink.getLink(event.message.getGuild().id);

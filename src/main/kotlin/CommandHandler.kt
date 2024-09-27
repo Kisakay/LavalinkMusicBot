@@ -9,6 +9,7 @@ interface Command {
     val description: String
     val permissions: String
     val params: String
+    val aliases: Array<String>? get() = null
 
     suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command> = mapOf(), musicService: MusicService)
 }
@@ -19,20 +20,23 @@ class CommandHandler {
 
     private fun loadCommands(): Map<String, Command> {
         val reflections = Reflections("org.example.interactions.commands")
-        // Find all classes that implement Command interface
         val commandClasses = reflections.getSubTypesOf(Command::class.java)
-        return commandClasses.mapNotNull { clazz ->
+
+        val commandMap = mutableMapOf<String, Command>()
+        commandClasses.mapNotNull { clazz ->
             try {
-                // Create an instance of each command
                 val instance = clazz.kotlin.createInstance()
-                // Map command name to instance
-                instance.name to instance
+                commandMap[instance.name.lowercase()] = instance
+                instance.aliases?.forEach { alias ->
+                    commandMap[alias.lowercase()] = instance
+                }
             } catch (e: Exception) {
                 println("Failed to create instance of ${clazz.simpleName}: ${e.message}")
-                null
             }
-        }.toMap()
+        }
+        return commandMap
     }
+
 
     suspend fun handle(event: MessageCreateEvent) {
         val content = event.message.content

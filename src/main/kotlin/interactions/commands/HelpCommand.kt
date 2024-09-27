@@ -26,14 +26,14 @@ class HelpCommand : Command {
                 color = Color(0x00FF00)
 
                 image = "https://ihorizon.me/assets/img/banner/ihrz_en-US.png"
-                thumbnail = EmbedBuilder.Thumbnail().apply {
-                    url = event.kord.getSelf().avatar?.cdnUrl?.toUrl().toString()
-                }
+//                thumbnail = EmbedBuilder.Thumbnail().apply {
+//                    url = event.kord.getSelf().avatar?.cdnUrl?.toUrl().toString()
+//                }
 
                 commands.values.forEach { command ->
                     fields += EmbedBuilder.Field().apply {
                         name = "**`${BotConfig.discord.prefix}${command.name} ${command.params}`**"
-                        value = "${command.description}\nPermissions: ${command.permissions}"
+                        value = "${command.description}\nPermissions: ${command.permissions}\nAliases: ${if (command.aliases == null) "None" else command.aliases!!.joinToString(", ")}"
                         inline = false
                     }
                 }
