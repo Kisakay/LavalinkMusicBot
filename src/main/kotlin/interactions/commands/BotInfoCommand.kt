@@ -6,6 +6,7 @@ import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.rest.builder.message.EmbedBuilder
 import kotlinx.coroutines.flow.count
 import method.getAllMembers
+import org.example.Command
 import org.example.MusicService
 
 class BotInfoCommand : Command {

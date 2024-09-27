@@ -3,6 +3,7 @@ package org.example.interactions.commands
 import dev.kord.core.behavior.edit
 import dev.kord.core.behavior.reply
 import dev.kord.core.event.message.MessageCreateEvent
+import org.example.Command
 import org.example.MusicService
 
 class PingCommand : Command {

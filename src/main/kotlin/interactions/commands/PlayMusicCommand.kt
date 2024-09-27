@@ -9,6 +9,7 @@ import dev.schlaubi.lavakord.audio.TrackEndEvent
 import dev.schlaubi.lavakord.audio.on
 import dev.schlaubi.lavakord.kord.getLink
 import org.example.BotConfig
+import org.example.Command
 import org.example.MusicService
 import org.example.method.connect
 import org.example.method.musicQueue

@@ -2,6 +2,7 @@ package org.example.interactions.commands
 
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.schlaubi.lavakord.kord.getLink
+import org.example.Command
 import org.example.MusicService
 import org.example.method.skipTrack
 

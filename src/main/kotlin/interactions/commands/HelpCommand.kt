@@ -5,6 +5,7 @@ import dev.kord.core.behavior.channel.createMessage
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.rest.builder.message.EmbedBuilder
 import org.example.BotConfig
+import org.example.Command
 import org.example.MusicService
 
 class HelpCommand : Command {

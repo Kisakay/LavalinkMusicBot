@@ -4,6 +4,7 @@ import dev.kord.core.behavior.edit
 import dev.kord.core.behavior.reply
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.schlaubi.lavakord.kord.getLink
+import org.example.Command
 import org.example.MusicService
 
 class StopMusicCommand : Command {
