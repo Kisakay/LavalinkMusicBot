@@ -4,10 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class LavalinkNodeOptions(
-    val name: String,
-    val host: String,
-    val port: Int,
-    val secure: Boolean,
+    val uri: String,
+    val password: String,
 )
 
 @Serializable

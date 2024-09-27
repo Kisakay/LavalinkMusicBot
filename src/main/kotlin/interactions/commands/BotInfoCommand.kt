@@ -9,6 +9,7 @@ import dev.kord.rest.builder.message.EmbedBuilder
 import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
+import org.example.MusicService
 
 suspend fun getAllMembers(kord: Kord): List<Member> {
     val allMembers = mutableListOf<Member>()
@@ -24,7 +25,7 @@ class BotInfoCommand : Command {
     override val permissions: String = "everyone"
     override val params: String = "<>"
 
-    override suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command>) {
+    override suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command>, musicService: MusicService) {
         event.message.channel.createMessage {
             embeds = mutableListOf(EmbedBuilder().apply {
                 title = "Informations about the bot"

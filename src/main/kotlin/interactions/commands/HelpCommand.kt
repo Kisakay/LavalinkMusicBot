@@ -5,6 +5,7 @@ import dev.kord.core.behavior.channel.createMessage
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.rest.builder.message.EmbedBuilder
 import org.example.BotConfig
+import org.example.MusicService
 
 class HelpCommand : Command {
     override val name: String = "help"
@@ -12,7 +13,7 @@ class HelpCommand : Command {
     override val permissions: String = "everyone"
     override val params: String = "<>"
 
-    override suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command>) {
+    override suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command>, musicService: MusicService) {
         event.message.channel.createMessage {
             embeds = mutableListOf(EmbedBuilder().apply {
                 title = "Help"

@@ -2,6 +2,7 @@ package org.example.interactions.commands
 
 import dev.kord.core.event.message.MessageCreateEvent
 import org.example.BotConfig
+import org.example.MusicService
 import org.reflections.Reflections
 import kotlin.reflect.full.createInstance
 
@@ -11,7 +12,7 @@ interface Command {
     val permissions: String // Example permission structure. Modify as needed.
     val params: String
 
-    suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command> = mapOf())
+    suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command> = mapOf(), musicService: MusicService)
 }
 
 class CommandHandler {
@@ -40,7 +41,7 @@ class CommandHandler {
         if (content.startsWith(BotConfig.discord.prefix)) {
             val commandName = content.split(" ")[0].substring(1).lowercase()
             val command = commands[commandName]
-            command?.execute(event, commands)
+            command?.execute(event, commands, musicService = MusicService(org.example.lavalink))
         }
     }
 }
