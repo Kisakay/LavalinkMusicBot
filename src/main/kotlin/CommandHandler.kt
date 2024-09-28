@@ -1,6 +1,8 @@
 package org.example
 
 import dev.kord.core.event.message.MessageCreateEvent
+import org.example.method.getLanguageData
+import org.example.structures.LanguageData
 import org.reflections.Reflections
 import kotlin.reflect.full.createInstance
 
@@ -11,7 +13,12 @@ interface Command {
     val params: String
     val aliases: Array<String>? get() = null
 
-    suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command> = mapOf(), musicService: MusicService)
+    suspend fun execute(
+        event: MessageCreateEvent,
+        lang: LanguageData,
+        commands: Map<String, Command> = mapOf(),
+        musicService: MusicService
+    )
 }
 
 class CommandHandler {
@@ -43,7 +50,12 @@ class CommandHandler {
         if (content.startsWith(BotConfig.discord.prefix)) {
             val commandName = content.split(" ")[0].substring(1).lowercase()
             val command = commands[commandName]
-            command?.execute(event, commands, musicService = MusicService(org.example.lavalink))
+            command?.execute(
+                event,
+                lang = getLanguageData(event.guildId.toString()),
+                commands,
+                musicService = MusicService(org.example.lavalink)
+            )
         }
     }
 }

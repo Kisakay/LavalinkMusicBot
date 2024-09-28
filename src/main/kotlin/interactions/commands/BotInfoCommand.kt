@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.count
 import method.getAllMembers
 import org.example.Command
 import org.example.MusicService
+import org.example.method.getLanguageData
+import org.example.structures.LanguageData
 
 class BotInfoCommand : Command {
     override val name: String = "botinfo"
@@ -15,31 +17,36 @@ class BotInfoCommand : Command {
     override val permissions: String = "everyone"
     override val params: String = "<>"
 
-    override suspend fun execute(event: MessageCreateEvent, commands: Map<String, Command>, musicService: MusicService) {
+    override suspend fun execute(
+        event: MessageCreateEvent,
+        lang: LanguageData,
+        commands: Map<String, Command>,
+        musicService: MusicService
+    ) {
         event.message.channel.createMessage {
             embeds = mutableListOf(EmbedBuilder().apply {
-                title = "Informations about the bot"
+                title = lang.bot_info_embed_title
                 color = Color(0x1E1E14)
 
                 fields += EmbedBuilder.Field().apply {
-                    name = "Commands:"
+                    name = lang.var_commands + ":"
                     value = "${commands.size}"
                     inline = true
                 }
                 fields += EmbedBuilder.Field().apply {
-                    name = "Guilds:"
+                    name = lang.var_guilds + ":"
                     value = "${event.kord.guilds.count()}"
                     inline = true
                 }
                 fields += EmbedBuilder.Field().apply {
-                    name = "Members:"
+                    name = lang.var_members + ":"
                     value = "${getAllMembers(event.kord).size}"
                     inline = true
                 }
 
 
                 footer = EmbedBuilder.Footer().apply {
-                    text = "LavalinkMusic Bot"
+                    text = "iHorizon Music"
                     icon = ""
                 }
             })

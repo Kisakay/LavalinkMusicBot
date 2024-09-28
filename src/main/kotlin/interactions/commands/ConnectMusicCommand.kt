@@ -5,6 +5,7 @@ import dev.schlaubi.lavakord.kord.getLink
 import org.example.Command
 import org.example.MusicService
 import org.example.method.connect
+import org.example.structures.LanguageData
 
 class ConnectMusicCommand : Command {
     override val name: String = "connect"
@@ -15,11 +16,12 @@ class ConnectMusicCommand : Command {
 
     override suspend fun execute(
         event: MessageCreateEvent,
+        lang: LanguageData,
         commands: Map<String, Command>,
         musicService: MusicService
     ) {
         val link = musicService.lavalink.getLink(event.message.getGuild().id)
 
-        connect(event, link)
+        connect(event, link, lang)
     }
 }

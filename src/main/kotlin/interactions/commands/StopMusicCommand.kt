@@ -1,11 +1,11 @@
 package org.example.interactions.commands
 
-import dev.kord.core.behavior.edit
 import dev.kord.core.behavior.reply
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.schlaubi.lavakord.kord.getLink
 import org.example.Command
 import org.example.MusicService
+import org.example.structures.LanguageData
 
 class StopMusicCommand : Command {
     override val name: String = "stop"
@@ -15,6 +15,7 @@ class StopMusicCommand : Command {
 
     override suspend fun execute(
         event: MessageCreateEvent,
+        lang: LanguageData,
         commands: Map<String, Command>,
         musicService: MusicService
     ) {
@@ -22,6 +23,6 @@ class StopMusicCommand : Command {
         val player = link.player
 
         player.stopTrack()
-        event.message.reply { content = "Stopped music!" }
+        event.message.reply { content = lang.stop_message }
     }
 }

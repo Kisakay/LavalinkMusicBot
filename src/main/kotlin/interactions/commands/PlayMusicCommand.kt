@@ -17,6 +17,7 @@ import org.example.method.musicQueue
 import org.example.method.playNextTrack
 import dev.kord.common.Color
 import dev.kord.core.behavior.reply
+import org.example.structures.LanguageData
 
 class PlayMusicCommand : Command {
     override val name: String = "play"
@@ -27,6 +28,7 @@ class PlayMusicCommand : Command {
 
     override suspend fun execute(
         event: MessageCreateEvent,
+        lang: LanguageData,
         commands: Map<String, Command>,
         musicService: MusicService
     ) {
@@ -35,7 +37,7 @@ class PlayMusicCommand : Command {
         val link = musicService.lavalink.getLink(event.message.getGuild().id)
 
         if (link.state != Link.State.CONNECTED) {
-            connect(event, link)
+            connect(event, link, lang)
         }
 
         var track: Track? = null
@@ -51,9 +53,9 @@ class PlayMusicCommand : Command {
                     track = playNextTrack(link)
                 }
 
-                embed = createMusicEmbed(trackInfo.title, trackInfo.uri, trackInfo.artworkUrl)
-                if (track == null) "Added to queue: ${trackInfo.title}"
-                else "Playing now: ${trackInfo.title}"
+                embed = createMusicEmbed(trackInfo.title, trackInfo.uri, trackInfo.artworkUrl, lang)
+                if (track == null) "${lang.play_added_to_queue}: ${trackInfo.title}"
+                else "${lang.play_playing_now}: ${trackInfo.title}"
             }
 
             is LoadResult.PlaylistLoaded -> {
@@ -63,9 +65,9 @@ class PlayMusicCommand : Command {
                     track = playNextTrack(link)
                 }
 
-                embed = createMusicEmbed(trackInfo.title, trackInfo.uri, trackInfo.artworkUrl)
-                if (track == null) "Added to queue: ${trackInfo.title}"
-                else "Playing now: ${trackInfo.title}"
+                embed = createMusicEmbed(trackInfo.title, trackInfo.uri, trackInfo.artworkUrl, lang)
+                if (track == null) "${lang.play_added_to_queue}: ${trackInfo.title}"
+                else "${lang.play_playing_now}: ${trackInfo.title}"
             }
 
             is LoadResult.SearchResult -> {
@@ -75,13 +77,13 @@ class PlayMusicCommand : Command {
                     track = playNextTrack(link)
                 }
 
-                embed = createMusicEmbed(trackInfo.title, trackInfo.uri, trackInfo.artworkUrl)
-                if (track == null) "Added to queue: ${trackInfo.title}"
-                else "Playing now: ${trackInfo.title}"
+                embed = createMusicEmbed(trackInfo.title, trackInfo.uri, trackInfo.artworkUrl, lang)
+                if (track == null) "${lang.play_added_to_queue}: ${trackInfo.title}"
+                else "${lang.play_playing_now}: ${trackInfo.title}"
             }
 
-            is LoadResult.NoMatches -> "No songs found"
-            is LoadResult.LoadFailed -> loadResult.data.message ?: "Error loading music"
+            is LoadResult.NoMatches -> "${lang.no_songs_found}"
+            is LoadResult.LoadFailed -> loadResult.data.message ?: "${lang.play_error_loading}"
         }
 
         if (embed != null) {
@@ -94,11 +96,11 @@ class PlayMusicCommand : Command {
     }
 
     // Helper function to create an embed
-    private fun createMusicEmbed(title: String, url: String?, thumbnailUrl: String?): EmbedBuilder {
+    private fun createMusicEmbed(title: String, url: String?, thumbnailUrl: String?, lang: LanguageData): EmbedBuilder {
         return EmbedBuilder().apply {
             this.title = title
             this.url = url
-            description = "Now playing: [$title]($url)"
+            description = "${lang.play_playing_now}: [$title]($url)"
             color = Color(0x1DB954)
 
             if (thumbnailUrl != null) {

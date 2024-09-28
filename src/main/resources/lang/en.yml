@@ -1,0 +1,45 @@
+# english language file
+
+var_commands: "Commands"
+var_guilds: "Guilds"
+var_members: "Members"
+var_none: "None"
+var_perm: "Permissions"
+var_aliases: "Aliases"
+var_unknown: "Unknown"
+
+# /botinfo
+bot_info_embed_title: "Informations about the bot"
+
+# /help
+help_embed_title: "List of available commands"
+
+# /leave
+leave_okay_message: "See you later!"
+
+# /pause
+pause_unpaused: "Music unpaused!"
+pause_paused: "Music paused!"
+
+# /ping
+ping_latency: "Latency"
+
+# /play
+play_added_to_queue: "Added to queue"
+play_playing_now: "Now playing"
+no_songs_found: "No songs found"
+play_error_loading: "Error loading music"
+
+# /skip
+queue_empty: "The queue is empty, there are no songs to skip"
+next_song: "Next song"
+queue_empty2: "The queue is empty, there are no more songs to play!"
+
+# /stop
+stop_message: "Stopped music!"
+
+# Event
+
+# connect
+connect_need_vc: "Please connect to a voice channel"
+connect_connected: "Connected to the channel"
