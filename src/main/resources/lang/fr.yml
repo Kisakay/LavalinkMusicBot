@@ -1,2 +1,45 @@
-# French Language File
+# fichier de langue français
 
+var_commands: "Commandes"
+var_guilds: "Serveurs"
+var_members: "Membres"
+var_none: "Aucun"
+var_perm: "Permissions"
+var_aliases: "Alias"
+var_unknown: "Inconnu"
+
+# /botinfo
+bot_info_embed_title: "Informations sur le bot"
+
+# /help
+help_embed_title: "Liste des commandes disponibles"
+
+# /leave
+leave_okay_message: "À bientôt !"
+
+# /pause
+pause_unpaused: "Musique relancée !"
+pause_paused: "Musique mise sur pause !"
+
+# /ping
+ping_latency: "Latence"
+
+# /play
+play_added_to_queue: "Ajouté à la liste d'attente"
+play_playing_now: "Lecture en cours"
+no_songs_found: "Aucune chanson trouvée"
+play_error_loading: "Erreur lors du chargement de la musique"
+
+# /skip
+queue_empty: "La liste d'attente est vide, il n'y a pas de chansons à sauter"
+next_song: "Chanson suivante"
+queue_empty2: "La liste d'attente est vide, il n'y a plus de chansons à jouer !"
+
+# /stop
+stop_message: "Musique arrêtée !"
+
+# Événement
+
+# connect
+connect_need_vc: "Veuillez vous connecter à un canal vocal"
+connect_connected: "Connecté au canal"
