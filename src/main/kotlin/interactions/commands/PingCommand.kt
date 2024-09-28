@@ -15,8 +15,8 @@ class PingCommand : Command {
 
     override suspend fun execute(
         event: MessageCreateEvent,
+        args: List<String>,
         lang: LanguageData,
-        commands: Map<String, Command>,
         musicService: MusicService
     ) {
         val startTimestamp = System.currentTimeMillis()

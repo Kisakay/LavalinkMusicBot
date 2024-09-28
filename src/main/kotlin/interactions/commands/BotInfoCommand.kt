@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.count
 import method.getAllMembers
 import org.example.Command
 import org.example.MusicService
-import org.example.method.getLanguageData
+import org.example.commands
 import org.example.structures.LanguageData
 
 class BotInfoCommand : Command {
@@ -19,8 +19,8 @@ class BotInfoCommand : Command {
 
     override suspend fun execute(
         event: MessageCreateEvent,
+        args: List<String>,
         lang: LanguageData,
-        commands: Map<String, Command>,
         musicService: MusicService
     ) {
         event.message.channel.createMessage {

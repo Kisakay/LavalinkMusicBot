@@ -1,5 +1,6 @@
 package org.example
 
+import JsonDB
 import dev.kord.core.Kord
 import dev.kord.gateway.ALL
 import dev.kord.gateway.Intents
@@ -13,6 +14,7 @@ import org.reflections.util.ClasspathHelper
 import org.reflections.util.ConfigurationBuilder
 
 lateinit var lavalink: LavaKord
+val iHorizonDatabase = JsonDB("db.json")
 
 suspend fun main() {
 

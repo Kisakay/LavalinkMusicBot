@@ -16,8 +16,8 @@ class SkipMusicCommand : Command {
 
     override suspend fun execute(
         event: MessageCreateEvent,
+        args: List<String>,
         lang: LanguageData,
-        commands: Map<String, Command>,
         musicService: MusicService
     ) {
         val link = musicService.lavalink.getLink(event.message.getGuild().id)

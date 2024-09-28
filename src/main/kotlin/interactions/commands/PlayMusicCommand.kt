@@ -28,11 +28,11 @@ class PlayMusicCommand : Command {
 
     override suspend fun execute(
         event: MessageCreateEvent,
+        args: List<String>,
         lang: LanguageData,
-        commands: Map<String, Command>,
         musicService: MusicService
     ) {
-        val query = event.message.content.removePrefix("${BotConfig.discord.prefix}play").trim()
+        val query = args.joinToString(" ")
         val search = if (query.startsWith("http")) query else "ytsearch:$query"
         val link = musicService.lavalink.getLink(event.message.getGuild().id)
 
