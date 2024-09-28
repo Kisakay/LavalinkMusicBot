@@ -9,6 +9,7 @@ import org.example.structures.LanguageData
 
 class PingCommand : Command {
     override val name: String = "ping"
+    override val category: String = "bot"
     override val description: String = "Responds with Pong!"
     override val permissions: String = "everyone"
     override val params: String = "<>"

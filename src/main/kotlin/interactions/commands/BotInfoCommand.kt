@@ -13,6 +13,7 @@ import org.example.structures.LanguageData
 
 class BotInfoCommand : Command {
     override val name: String = "botinfo"
+    override val category: String = "bot"
     override val description: String = "Displays the bot info embed"
     override val permissions: String = "everyone"
     override val params: String = "<>"

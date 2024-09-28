@@ -11,6 +11,7 @@ import org.example.structures.LanguageData
 
 class PrefixCommand : Command {
     override val name: String = "prefix"
+    override val category: String = "bot"
     override val description: String = "customize the bot prefix"
     override val permissions: String = "admin(s)"
     override val params: String = "<prefix>"

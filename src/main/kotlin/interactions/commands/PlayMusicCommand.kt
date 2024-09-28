@@ -21,6 +21,7 @@ import org.example.structures.LanguageData
 
 class PlayMusicCommand : Command {
     override val name: String = "play"
+    override val category: String = "music"
     override val description: String = "Play music into a voice channel"
     override val permissions: String = "everyone"
     override val params: String = "<link>"

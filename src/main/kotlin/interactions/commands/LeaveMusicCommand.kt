@@ -9,6 +9,7 @@ import org.example.structures.LanguageData
 
 class LeaveMusicCommand : Command {
     override val name: String = "leave"
+    override val category: String = "utils"
     override val description: String = "bot leave the voice channel"
     override val permissions: String = "everyone"
     override val params: String = "<>"

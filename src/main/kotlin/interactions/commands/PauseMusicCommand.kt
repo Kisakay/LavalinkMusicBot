@@ -9,6 +9,7 @@ import org.example.structures.LanguageData
 
 class PauseMusicCommand : Command {
     override val name: String = "pause"
+    override val category: String = "music"
     override val description: String = "pause the current track"
     override val permissions: String = "everyone"
     override val params: String = "<>"

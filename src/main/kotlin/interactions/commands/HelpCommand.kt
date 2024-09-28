@@ -16,6 +16,7 @@ import org.example.structures.LanguageData
 
 class HelpCommand : Command {
     override val name: String = "help"
+    override val category: String = "bot"
     override val description: String = "Displays this help message"
     override val permissions: String = "everyone"
     override val params: String = "<>"

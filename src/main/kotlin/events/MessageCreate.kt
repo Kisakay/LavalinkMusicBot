@@ -16,7 +16,7 @@ class MessageCreate : EventHandler {
         kord.on<MessageCreateEvent> {
             if (message.content == "<@${message.kord.getSelf().id.toString()}>") {
                 message.reply {
-                    content = "My prefix on this server is ${getBotPrefix(message.getGuild().id.toString())}"
+                    content = "My prefix on this server is **`${getBotPrefix(message.getGuild().id.toString())}`**"
                 }
             } else {
                 commandHandler.handle(this);

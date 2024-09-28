@@ -9,6 +9,7 @@ import org.example.structures.LanguageData
 
 class ConnectMusicCommand : Command {
     override val name: String = "connect"
+    override val category: String = "utils"
     override val description: String = "Bot join the channel"
     override val permissions: String = "everyone"
     override val params: String = "<>"

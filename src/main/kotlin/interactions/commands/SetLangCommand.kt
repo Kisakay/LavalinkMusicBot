@@ -12,6 +12,7 @@ import org.example.structures.LanguageData
 
 class SetLangCommand : Command {
     override val name: String = "lang"
+    override val category: String = "bot"
     override val description: String = "choose the bot language"
     override val permissions: String = "admin(s)"
     override val params: String = "<fr/en>"

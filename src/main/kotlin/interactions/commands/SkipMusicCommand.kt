@@ -10,6 +10,7 @@ import org.example.structures.LanguageData
 
 class SkipMusicCommand : Command {
     override val name: String = "skip"
+    override val category: String = "music"
     override val description: String = "Skip the current track"
     override val permissions: String = "everyone"
     override val params: String = "<>"

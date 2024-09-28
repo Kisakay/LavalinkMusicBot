@@ -14,6 +14,7 @@ interface Command {
     val description: String
     val permissions: String
     val params: String
+    val category: String
     val aliases: Array<String>? get() = null
 
     suspend fun execute(
