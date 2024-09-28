@@ -4,6 +4,7 @@ import dev.arbjerg.lavalink.protocol.v4.LoadResult
 import dev.arbjerg.lavalink.protocol.v4.Track
 import dev.kord.core.entity.channel.VoiceChannel
 import dev.kord.core.event.message.MessageCreateEvent
+import dev.kord.rest.builder.message.EmbedBuilder
 import dev.schlaubi.lavakord.audio.Link
 import dev.schlaubi.lavakord.audio.TrackEndEvent
 import dev.schlaubi.lavakord.audio.on
@@ -14,6 +15,8 @@ import org.example.MusicService
 import org.example.method.connect
 import org.example.method.musicQueue
 import org.example.method.playNextTrack
+import dev.kord.common.Color
+import dev.kord.core.behavior.reply
 
 class PlayMusicCommand : Command {
     override val name: String = "play"
@@ -29,45 +32,82 @@ class PlayMusicCommand : Command {
     ) {
         val query = event.message.content.removePrefix("${BotConfig.discord.prefix}play").trim()
         val search = if (query.startsWith("http")) query else "ytsearch:$query"
-        val link = musicService.lavalink.getLink(event.message.getGuild().id);
+        val link = musicService.lavalink.getLink(event.message.getGuild().id)
 
         if (link.state != Link.State.CONNECTED) {
             connect(event, link)
         }
 
         var track: Track? = null
-        val responseMessage = when (val item = musicService.loadTrack(link, search)) {
+        var embed: EmbedBuilder? = null
+
+        val loadResult = musicService.loadTrack(link, search)
+
+        val responseMessage = when (loadResult) {
             is LoadResult.TrackLoaded -> {
-                musicQueue.add(item.data)
+                val trackInfo = loadResult.data.info
+                musicQueue.add(loadResult.data)
                 if (link.player.playingTrack == null) {
                     track = playNextTrack(link)
                 }
-                if (track == null) "Added to queue: ${item.data.info.title}"
-                else "Playing now: ${item.data.info.title}"
+
+                embed = createMusicEmbed(trackInfo.title, trackInfo.uri, trackInfo.artworkUrl)
+                if (track == null) "Added to queue: ${trackInfo.title}"
+                else "Playing now: ${trackInfo.title}"
             }
 
             is LoadResult.PlaylistLoaded -> {
-                musicQueue.addAll(item.data.tracks)
+                val trackInfo = loadResult.data.tracks.first().info
+                musicQueue.addAll(loadResult.data.tracks)
                 if (link.player.playingTrack == null) {
                     track = playNextTrack(link)
                 }
-                if (track == null) "Added to queue: ${item.data.tracks.first().info.title}"
-                else "Playing now: ${item.data.tracks.first().info.title}"
+
+                embed = createMusicEmbed(trackInfo.title, trackInfo.uri, trackInfo.artworkUrl)
+                if (track == null) "Added to queue: ${trackInfo.title}"
+                else "Playing now: ${trackInfo.title}"
             }
 
             is LoadResult.SearchResult -> {
-                musicQueue.add(item.data.tracks.first())
+                val trackInfo = loadResult.data.tracks.first().info
+                musicQueue.add(loadResult.data.tracks.first())
                 if (link.player.playingTrack == null) {
                     track = playNextTrack(link)
                 }
-                if (track == null) "Added to queue: ${item.data.tracks.first().info.title}"
-                else "Playing now: ${item.data.tracks.first().info.title}"
+
+                embed = createMusicEmbed(trackInfo.title, trackInfo.uri, trackInfo.artworkUrl)
+                if (track == null) "Added to queue: ${trackInfo.title}"
+                else "Playing now: ${trackInfo.title}"
             }
 
             is LoadResult.NoMatches -> "No songs found"
-            is LoadResult.LoadFailed -> item.data.message ?: "Error loading music"
+            is LoadResult.LoadFailed -> loadResult.data.message ?: "Error loading music"
         }
 
-        event.message.channel.createMessage(responseMessage)
+        if (embed != null) {
+            event.message.reply {
+                embeds = mutableListOf(embed)
+            }
+        } else {
+            event.message.channel.createMessage(responseMessage)
+        }
+    }
+
+    // Helper function to create an embed
+    private fun createMusicEmbed(title: String, url: String?, thumbnailUrl: String?): EmbedBuilder {
+        return EmbedBuilder().apply {
+            this.title = title
+            this.url = url
+            description = "Now playing: [$title]($url)"
+            color = Color(0x1DB954)
+
+            if (thumbnailUrl != null) {
+                image = thumbnailUrl
+            }
+
+            footer {
+                text = "iHorizon Music"
+            }
+        }
     }
 }
