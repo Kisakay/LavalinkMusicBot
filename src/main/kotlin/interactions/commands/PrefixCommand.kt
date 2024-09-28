@@ -25,7 +25,7 @@ class PrefixCommand : Command {
 
         if (prefix.length >= 5) {
             event.message.reply {
-                content = "${prefix} is too long, the bot can be hard to use, canceling the action."
+                content = lang.prefix_too_long.replace("\${prefix}", prefix)
             }
             return
         }
@@ -33,7 +33,7 @@ class PrefixCommand : Command {
         iHorizonDatabase.set("${event.guildId.toString()}.prefix", prefix);
 
         event.message.reply {
-            content = "The bot prefix is now **`${prefix}`** !"
+            content = lang.prefix_set.replace("\${prefix}", prefix)
         }
         return;
     }

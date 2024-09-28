@@ -26,4 +26,8 @@ data class LanguageData(
     var stop_message: String = "",
     var connect_need_vc: String = "",
     var connect_connected: String = "",
+    var lang_set_sucessfuly: String = "",
+    var lang_available: String = "",
+    var prefix_too_long: String = "",
+    var prefix_set: String = "",
 )

@@ -38,6 +38,14 @@ queue_empty2: "The queue is empty, there are no more songs to play!"
 # /stop
 stop_message: "Stopped music!"
 
+# /lang
+lang_set_sucessfuly: "The bot language are succesfuly set to English!"
+lang_available: "The available language for the bot is: `en`, `fr`"
+
+# /prefix
+prefix_too_long: "${prefix} is too long, the bot can be hard to use, canceling the action."
+prefix_set: "The bot prefix is now **`${prefix}`** !"
+
 # Event
 
 # connect

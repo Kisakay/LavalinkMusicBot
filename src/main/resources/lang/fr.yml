@@ -38,6 +38,14 @@ queue_empty2: "La liste d'attente est vide, il n'y a plus de chansons à jouer !
 # /stop
 stop_message: "Musique arrêtée !"
 
+# /lang
+lang_set_sucessfuly: "La langue du bot as été définis en Français avec succès!"
+lang_available: "Les langues disponible pour le bont sont: `en`, `fr`"
+
+# /prefix
+prefix_too_long: "Le prefix ${prefix} est trop long, je ne peux pas le mettre, je serais trop difficile à utiliser!"
+prefix_set: "Le prefix est changer, il est **`${prefix}`** !"
+
 # Événement
 
 # connect

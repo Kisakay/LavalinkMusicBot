@@ -7,6 +7,7 @@ import org.example.BotConfig
 import org.example.Command
 import org.example.MusicService
 import org.example.iHorizonDatabase
+import org.example.method.getLanguageData
 import org.example.structures.LanguageData
 
 class SetLangCommand : Command {
@@ -21,24 +22,27 @@ class SetLangCommand : Command {
         lang: LanguageData,
         musicService: MusicService
     ) {
-        val lang = args[0];
+        val lang2 = args[0];
 
-        if (lang == "fr") {
+        if (lang2 == "fr") {
+            iHorizonDatabase.set("${event.guildId.toString()}.language", lang2)
+            val lang3 = getLanguageData(event.guildId.toString());
+
             event.message.reply {
-                content = "La langue du bot as été définis en Français avec succès!"
+                content = lang3.lang_set_sucessfuly
             }
-        } else if (lang == "en") {
+        } else if (lang2 == "en") {
+            iHorizonDatabase.set("${event.guildId.toString()}.language", lang2)
+            val lang3 = getLanguageData(event.guildId.toString());
+
             event.message.reply {
-                content = "The bot language are succesfuly set to English!"
+                content = lang3.lang_set_sucessfuly
             }
         } else {
             event.message.reply {
-                content = "The available language for the bot is: `en`, `fr`"
+                content = lang.lang_available
             }
             return
         }
-
-        iHorizonDatabase.set("${event.guildId.toString()}.language", lang)
-        return
     }
 }
