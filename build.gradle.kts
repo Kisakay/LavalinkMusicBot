@@ -1,13 +1,24 @@
 plugins {
     kotlin("jvm") version "2.0.10"
     kotlin("plugin.serialization") version "1.9.0"
+    id("io.ktor.plugin") version "2.3.12"
 }
 
 group = "org.example"
-version = "1.0-SNAPSHOT"
+version = "1.1"
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass.set("org.example.MainKt")
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("ihrz-kt-final.jar")
+    }
 }
 
 dependencies {
@@ -17,7 +28,7 @@ dependencies {
     implementation("io.ktor:ktor-client-cio:2.3.5")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation("org.reflections:reflections:0.10.2")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.0") // Add Kotlin Reflection library
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.0")
 
     implementation("dev.schlaubi.lavakord:kord-jvm:7.1.0")
     implementation("dev.schlaubi.lavakord:lavasrc-jvm:7.1.0") {

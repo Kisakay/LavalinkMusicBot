@@ -37,9 +37,7 @@ class HelpCommand : Command {
         lang: LanguageData,
         musicService: MusicService
     ) {
-
         val categories = commands.values.distinctBy { it.name }.groupBy { it.category }
-
         val totalPages = categories.size
         val botAvatarUrl = event.kord.getSelf().avatar?.cdnUrl?.toUrl()
             ?: event.kord.getSelf().defaultAvatar.cdnUrl.toUrl()
@@ -60,8 +58,10 @@ class HelpCommand : Command {
             }
         }
 
+        val helpMessageId = replyMessage.id
+
         event.kord.launch {
-            delay(900_000)
+            delay(100_000)
             replyMessage.edit {
                 actionRow {
                     interactionButton(style = ButtonStyle.Secondary, customId = "prev") {
@@ -78,6 +78,9 @@ class HelpCommand : Command {
 
         event.kord.on<InteractionCreateEvent> {
             val interaction = this.interaction as? ButtonInteraction ?: return@on
+
+            if (interaction.message?.id != helpMessageId) return@on
+
             val customId = interaction.componentId
 
             when (customId) {
