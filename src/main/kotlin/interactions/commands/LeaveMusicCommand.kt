@@ -13,7 +13,7 @@ class LeaveMusicCommand : Command {
     override val description: String = "bot leave the voice channel"
     override val permissions: String = "everyone"
     override val params: String = "<>"
-    override val aliases: Array<String> = arrayOf("disconnect", "kick")
+    override val aliases: Array<String> = arrayOf("disconnect")
 
     override suspend fun execute(
         event: MessageCreateEvent,

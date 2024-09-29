@@ -13,6 +13,7 @@ class PingCommand : Command {
     override val description: String = "Responds with Pong!"
     override val permissions: String = "everyone"
     override val params: String = "<>"
+    override val aliases: Array<String> = arrayOf("speed")
 
     override suspend fun execute(
         event: MessageCreateEvent,

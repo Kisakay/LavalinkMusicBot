@@ -1,9 +1,8 @@
 package org.example.interactions.commands
 
-import dev.kord.core.behavior.edit
+import dev.kord.common.entity.Permission
 import dev.kord.core.behavior.reply
 import dev.kord.core.event.message.MessageCreateEvent
-import org.example.BotConfig
 import org.example.Command
 import org.example.MusicService
 import org.example.iHorizonDatabase
@@ -23,6 +22,10 @@ class SetLangCommand : Command {
         lang: LanguageData,
         musicService: MusicService
     ) {
+        if (!event.member?.getPermissions()!!.contains(Permission.Administrator)) {
+            return
+        }
+
         val lang2 = args[0];
 
         if (lang2 == "fr") {

@@ -1,5 +1,6 @@
 package org.example.interactions.commands
 
+import dev.kord.common.entity.Permission
 import dev.kord.core.behavior.edit
 import dev.kord.core.behavior.reply
 import dev.kord.core.event.message.MessageCreateEvent
@@ -22,6 +23,10 @@ class PrefixCommand : Command {
         lang: LanguageData,
         musicService: MusicService
     ) {
+        if (!event.member?.getPermissions()!!.contains(Permission.Administrator)) {
+            return
+        }
+
         val prefix = args[0];
 
         if (prefix.length >= 5) {

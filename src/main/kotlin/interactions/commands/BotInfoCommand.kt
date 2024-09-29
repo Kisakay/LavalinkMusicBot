@@ -17,6 +17,7 @@ class BotInfoCommand : Command {
     override val description: String = "Displays the bot info embed"
     override val permissions: String = "everyone"
     override val params: String = "<>"
+    override val aliases: Array<String> = arrayOf("bi", "info", "bot")
 
     override suspend fun execute(
         event: MessageCreateEvent,
