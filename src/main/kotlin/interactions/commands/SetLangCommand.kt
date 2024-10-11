@@ -4,7 +4,6 @@ import dev.kord.common.entity.Permission
 import dev.kord.core.behavior.reply
 import dev.kord.core.event.message.MessageCreateEvent
 import org.example.Command
-import org.example.MusicService
 import org.example.iHorizonDatabase
 import org.example.method.getLanguageData
 import org.example.structures.LanguageData
@@ -20,7 +19,6 @@ class SetLangCommand : Command {
         event: MessageCreateEvent,
         args: List<String>,
         lang: LanguageData,
-        musicService: MusicService
     ) {
         if (!event.member?.getPermissions()!!.contains(Permission.Administrator)) {
             return

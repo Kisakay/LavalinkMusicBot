@@ -14,7 +14,7 @@ class Ready : EventHandler {
 
             kord.editPresence {
                 status = PresenceStatus.Online
-                listening("music on all servers! | Type: ${BotConfig.discord.prefix}help")
+                listening("bitches's moan")
             }
         }
     }

@@ -37,6 +37,7 @@ dependencies {
     implementation("org.yaml:snakeyaml:2.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+    implementation("io.ktor:ktor-client-cio-jvm:2.3.12")
     testImplementation(kotlin("test"))
 }
 

@@ -7,7 +7,6 @@ import dev.kord.gateway.Intents
 import dev.kord.gateway.PrivilegedIntent
 import dev.schlaubi.lavakord.LavaKord
 import org.example.events.EventHandler
-import org.example.lavalink.setupLavaLink
 import org.reflections.Reflections
 import org.reflections.scanners.SubTypesScanner
 import org.reflections.util.ClasspathHelper
@@ -19,8 +18,6 @@ val iHorizonDatabase = JsonDB("db.json")
 suspend fun main() {
 
     val kord = Kord(BotConfig.discord.token)
-    lavalink = setupLavaLink(kord);
-    setupLavaLink(kord)
 
     val reflections = Reflections(
         ConfigurationBuilder()

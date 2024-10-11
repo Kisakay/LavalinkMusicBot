@@ -3,7 +3,6 @@ package org.example.interactions.commands
 import dev.kord.common.entity.Permission
 import dev.kord.core.event.message.MessageCreateEvent
 import org.example.Command
-import org.example.MusicService
 import org.example.structures.LanguageData
 
 class EchoCommand : Command {
@@ -18,7 +17,6 @@ class EchoCommand : Command {
         event: MessageCreateEvent,
         args: List<String>,
         lang: LanguageData,
-        musicService: MusicService
     ) {
         if (!event.member?.getPermissions()!!.contains(Permission.Administrator)) {
             return

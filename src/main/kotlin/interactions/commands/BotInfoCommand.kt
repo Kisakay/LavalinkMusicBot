@@ -7,7 +7,6 @@ import dev.kord.rest.builder.message.EmbedBuilder
 import kotlinx.coroutines.flow.count
 import method.getAllMembers
 import org.example.Command
-import org.example.MusicService
 import org.example.commands
 import org.example.structures.LanguageData
 
@@ -23,7 +22,6 @@ class BotInfoCommand : Command {
         event: MessageCreateEvent,
         args: List<String>,
         lang: LanguageData,
-        musicService: MusicService
     ) {
         event.message.channel.createMessage {
             embeds = mutableListOf(EmbedBuilder().apply {

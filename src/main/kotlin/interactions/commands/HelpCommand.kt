@@ -12,7 +12,6 @@ import dev.kord.core.event.interaction.InteractionCreateEvent
 import dev.kord.rest.builder.message.EmbedBuilder
 import kotlinx.datetime.Clock
 import org.example.Command
-import org.example.MusicService
 import org.example.commands
 import org.example.method.getBotPrefix
 import org.example.structures.LanguageData
@@ -35,7 +34,6 @@ class HelpCommand : Command {
         event: MessageCreateEvent,
         args: List<String>,
         lang: LanguageData,
-        musicService: MusicService
     ) {
         val categories = commands.values.distinctBy { it.name }.groupBy { it.category }
         val totalPages = categories.size

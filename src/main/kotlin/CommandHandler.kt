@@ -21,7 +21,6 @@ interface Command {
         event: MessageCreateEvent,
         args: List<String> = listOf(),
         lang: LanguageData,
-        musicService: MusicService
     )
 }
 
@@ -62,7 +61,6 @@ class CommandHandler {
                 event,
                 args = args,
                 lang = getLanguageData(event.guildId.toString()),
-                musicService = MusicService(lavalink)
             )
         }
     }
