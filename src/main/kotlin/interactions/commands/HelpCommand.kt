@@ -140,7 +140,7 @@ class HelpCommand : Command {
             }
 
             footer = EmbedBuilder.Footer().apply {
-                text = "iHorizon Music - Page ${currentPage + 1}/${categories.size}"
+                text = "Nsfw+ - Page ${currentPage + 1}/${categories.size}"
                 icon = ""
             }
 

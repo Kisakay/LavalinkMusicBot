@@ -46,7 +46,7 @@ class BotInfoCommand : Command {
 
 
                 footer = EmbedBuilder.Footer().apply {
-                    text = "iHorizon Music"
+                    text = "Nsfw+"
                     icon = ""
                 }
             })

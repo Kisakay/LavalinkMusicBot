@@ -1,6 +1,9 @@
 package org.example.interactions.commands
 
+import dev.kord.common.entity.Permission
+import dev.kord.common.entity.Permissions
 import dev.kord.core.behavior.reply
+import dev.kord.core.entity.channel.TextChannel
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.rest.builder.message.EmbedBuilder
 import io.ktor.client.*
@@ -38,17 +41,13 @@ class AnalCommand : Command {
         args: List<String>,
         lang: LanguageData,
     ) {
-//        val channel = event.message.channel.asChannel() as? TextChannel
-//        if (channel == null || !channel.isNsfw) {
-//            event.message.channel.createMessage("This command can only be used in NSFW channels.")
-//            return
-//        }
-//
-//        if (!event.member?.getPermissions()!!.contains(Permission.Administrator)) {
-//            return
-//        }
+        val channel = event.message.channel.asChannel() as? TextChannel
+        if (channel == null || !channel.isNsfw) {
+            event.message.channel.createMessage("This command can only be used in NSFW channels.")
+            return
+        }
 
-        val apiUrl = "https://purrbot.site/api/img/nsfw/blowjob/gif"
+        val apiUrl = "https://purrbot.site/api/img/nsfw/anal/gif"
         val apiResponse: String = withContext(Dispatchers.IO) {
             httpClient.get(apiUrl).bodyAsText()
         }

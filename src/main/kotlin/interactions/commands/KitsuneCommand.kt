@@ -13,25 +13,13 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import org.example.Command
 import org.example.structures.LanguageData
-import kotlinx.serialization.Serializable
-import java.lang.Error
 
-@Serializable
-data class NsfwContent2(
-    val success: Boolean,
-    val message: String,
-    val color: Int,
-    val version: String
-)
-
-
-class BoobsCommand : Command {
-    override val name: String = "boobs"
+class Kitsune : Command {
+    override val name: String = "kitsune"
     override val category: String = "nsfw"
     override val description: String = "The bot sends the message."
     override val permissions: String = "everyone"
     override val params: String = "<>"
-    override val aliases: Array<String> = arrayOf("seins", "eins", "les-jouet-des-femmes")
 
     private val httpClient = HttpClient(CIO)
 
@@ -40,19 +28,17 @@ class BoobsCommand : Command {
         args: List<String>,
         lang: LanguageData,
     ) {
-
         val channel = event.message.channel.asChannel() as? TextChannel
         if (channel == null || !channel.isNsfw) {
             event.message.channel.createMessage("This command can only be used in NSFW channels.")
             return
         }
 
-        val apiUrl = "https://nekobot.xyz/api/image?type=boobs"
+        val apiUrl = "https://nekobot.xyz/api/image?type=hkitsune"
         val apiResponse: String = withContext(Dispatchers.IO) {
             httpClient.get(apiUrl).bodyAsText()
         }
         val nsfwPng: NsfwContent2 = Json.decodeFromString(apiResponse)
-
 
         val embed = EmbedBuilder().apply {
             title = "NSFW Content"

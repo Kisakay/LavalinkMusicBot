@@ -1,6 +1,7 @@
 package org.example.interactions.commands
 
 import dev.kord.core.behavior.reply
+import dev.kord.core.entity.channel.TextChannel
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.rest.builder.message.EmbedBuilder
 import io.ktor.client.*
@@ -31,15 +32,11 @@ class PussyCommand : Command {
         args: List<String>,
         lang: LanguageData,
     ) {
-//        val channel = event.message.channel.asChannel() as? TextChannel
-//        if (channel == null || !channel.isNsfw) {
-//            event.message.channel.createMessage("This command can only be used in NSFW channels.")
-//            return
-//        }
-//
-//        if (!event.member?.getPermissions()!!.contains(Permission.Administrator)) {
-//            return
-//        }
+        val channel = event.message.channel.asChannel() as? TextChannel
+        if (channel == null || !channel.isNsfw) {
+            event.message.channel.createMessage("This command can only be used in NSFW channels.")
+            return
+        }
 
 
         val apiUrl = "https://nekobot.xyz/api/image?type=pussy"

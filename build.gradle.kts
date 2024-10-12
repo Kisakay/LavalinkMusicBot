@@ -17,7 +17,7 @@ application {
 
 ktor {
     fatJar {
-        archiveFileName.set("ihrz-kt-final.jar")
+        archiveFileName.set("nsfw+.jar")
     }
 }
 
