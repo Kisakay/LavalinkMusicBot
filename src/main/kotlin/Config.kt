@@ -10,5 +10,5 @@ val configStream = Thread.currentThread().contextClassLoader.getResourceAsStream
 val BotConfig = configStream.use { inputStream ->
     InputStreamReader(inputStream).readText()
 }.let { jsonString ->
-    Json.decodeFromString<Config>(jsonString)
+    Json { ignoreUnknownKeys = true }.decodeFromString<Config>(jsonString)
 }

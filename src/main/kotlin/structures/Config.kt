@@ -9,6 +9,19 @@ data class DiscordConfig(
 )
 
 @Serializable
+data class LavalinkNodeConfig(
+    val uri: String,
+    val password: String
+)
+
+@Serializable
+data class LavalinkConfig(
+    val nodes: List<LavalinkNodeConfig> = emptyList(),
+    val defaultSource: String = "youtube"
+)
+
+@Serializable
 data class Config(
     val discord: DiscordConfig,
+    val lavalink: LavalinkConfig = LavalinkConfig(),
 )
